@@ -6,11 +6,13 @@ h1 {
   border: 1px solid darkcyan;
   margin: 1%;
   padding: 2%;
+  background: transparent;
   &:hover {
     cursor: pointer;
   }
 }
 
 .selected {
-  background: rgba(0,0,0, .2);
+  background-color: red;
+  // letter-spacing: 5px;
 }
