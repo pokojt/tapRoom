@@ -1,18 +1,17 @@
-import { Component} from 'angular2/core';
-// import { TaskListComponent } from './task-list.component';
+import { Component, EventEmitter} from 'angular2/core';
+import { KegListComponent } from './keg-list.component';
 import { Keg } from './keg.model';
 
 @Component({
   selector: 'my-app',
+  directives: [KegListComponent],
   template: `
     <div class="container">
       <h1>Tap Room App</h1>
-      <div class="kegItem"  *ngFor="#keg of kegs">
-        <h3>{{ keg.name }}</h3>
-        <p>{{ keg.brand }}</p>
-        <p>{{ keg.price }}</p>
-        <p>{{ keg.abv }}</p>
-      </div>
+      <keg-list
+        [kegList]="kegs"
+        (onKegSelect)="kegWasSelected($event)">
+      </keg-list>
     </div>
   `
 })
