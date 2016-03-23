@@ -3,6 +3,8 @@ h1 {
 }
 
 .kegItem {
+  display: flex;
+  justify-content: space-around;
   border: 1px solid darkcyan;
   margin: 1%;
   padding: 2%;
@@ -13,6 +15,7 @@ h1 {
 }
 
 .selected .kegItem{
+  transition: all 500ms ease-in;
   background-color: rgba(0,0,0, .2);
   letter-spacing: 5px;
 }

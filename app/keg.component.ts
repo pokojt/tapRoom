@@ -6,15 +6,15 @@ import { Keg } from './keg.model';
    inputs: ['keg'],
   template: `
   <div class="kegItem">
+  <div class="beerInfo">
     <h3 [class.strong]="6.4 < keg.abv" [class.light]="6.5 > keg.abv" [class.session]="5 > keg.abv">{{ keg.name }}</h3>
     <p>{{ keg.brand }}</p>
-    <p [class.expensive]="5 < keg.price" [class.cheap]="6 > keg.price">\$\{{ keg.price }}</p>
+    <p [class.expensive]="5 < keg.price" [class.cheap]="6 > keg.price">\$\{{ keg.price.toFixed(2) }}</p>
     <p>{{ keg.abv.toFixed(1) }}%</p>
-    <p>{{ keg.pints.toFixed(2) }}</p>
+    <p>{{ keg.pints }}  pints remaining</p>
 
-    <button (click)="pintPoured(keg)" type="button" id="pourButton">
-      Pour a Pint
-    </button>
+  </div>
+  <div class="pintBar">
 
     <div ng-repeat="n in fullnessArray" class="kegFullness">
       <div [class.poured]="124 > keg.pints"></div>
@@ -79,6 +79,10 @@ import { Keg } from './keg.model';
       <div [class.poured]="6 > keg.pints"></div>
       <div [class.poured]="4 > keg.pints"></div>
       <div [class.poured]="2 > keg.pints"></div>
+    </div>
+    <button (click)="pintPoured(keg)" type="button" id="pourButton">
+      Pour a Pint
+    </button>
     </div>
   </div>
   `
