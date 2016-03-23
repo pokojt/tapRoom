@@ -21,6 +21,7 @@ export class AppComponent {
   constructor() {
     this.kegs = [
       new Keg("Blonde IPA", "Pfriem Family Brewers", 6, 7.5),
+      new Keg("Local Logger Lager", "Everybody's Brewing", 5, 5.0),
       new Keg("Dead Guy Ale", "Rogue", 5, 6.8),
       new Keg("Ripe", "Great Notion Brewing", 6, 7.2),
       new Keg("PBR", "Pabst Brewing Company", 2, 4.5)

@@ -6,11 +6,11 @@ import { Keg } from './keg.model';
    inputs: ['keg'],
   template: `
   <div class="kegItem">
-    <h3>{{ keg.name }}</h3>
+    <h3 [class.strong]="6.4 < keg.abv" [class.light]="6.5 > keg.abv" [class.session]="5 > keg.abv">{{ keg.name }}</h3>
     <p>{{ keg.brand }}</p>
-    <p>{{ keg.price }}</p>
-    <p>{{ keg.abv }}</p>
-    <p>{{ keg.pints }}</p>
+    <p [class.expensive]="5 < keg.price" [class.cheap]="6 > keg.price">{{ keg.price }}</p>
+    <p>{{ keg.abv.toFixed(1) }}%</p>
+    <p>\$\{{ keg.pints.toFixed(2) }}</p>
 
     <button (click)="pintPoured(keg)" type="button" id="pourButton">
       Pour a Pint

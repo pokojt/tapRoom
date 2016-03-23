@@ -27,3 +27,23 @@ h1 {
   height: 2px;
   background-color: white;
 }
+
+p.expensive {
+  color: green;
+}
+
+p.cheap {
+  color: blue;
+}
+
+h3.strong::after {
+  content: url("../../resources/img/strong.png");
+}
+
+h3.light::after {
+  content: url("../../resources/img/light.png");
+}
+
+h3.session::after {
+  content: url("../../resources/img/session.png");
+}
