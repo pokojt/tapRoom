@@ -7,10 +7,14 @@ import {Keg} from './keg.model';
   template: `
   <div class="kegItem">
     <h2>Edit Keg:</h2>
-    <h3>{{ keg.name }}</h3>
-    <p>{{ keg.brand }}</p>
-    <p>{{ keg.price }}</p>
-    <p>{{ keg.abv }}</p>
+    <label for="name">Beer</label>
+    <input [(ngModel)]="keg.name" />
+    <label for="brand">Brand</label>
+    <input [(ngModel)]="keg.brand" />
+    <label for="price">Price/Pint</label>
+    <input type="number" [(ngModel)]="keg.price" />
+    <label for="abv">ABV</label>
+    <input type="number" [(ngModel)]="keg.abv" />
   </div>
   `
 })
