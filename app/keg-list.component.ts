@@ -3,14 +3,21 @@ import {Keg} from './keg.model';
 import { KegComponent } from './keg.component';
 import { EditKegDetailsComponent } from './edit-keg-details.component';
 import { NewKegComponent} from './add-keg.component';
+import {ChangePipe} from './change.pipe';
 
 @Component({
   selector: 'keg-list',
   inputs: ['kegList'],
   outputs: ['onKegSelect'],
   directives: [KegComponent, EditKegDetailsComponent, NewKegComponent],
+  pipes: [ChangePipe],
   template: `
-  <keg-display  *ngFor="#currentKeg of kegList" (click)="kegClicked(currentKeg)"
+  <select (change)="onChange($event.target.value)">
+    <option selected="selected" value="all">Show All</option>
+    <option value="change">Show Kegs Ready to Be Changed</option>
+    <option value="stillFull" selected="selected">Show Full Kegs</option>
+  </select>
+  <keg-display  *ngFor="#currentKeg of kegList | change:filterEmpty" (click)="kegClicked(currentKeg)"
   [class.selected]="currentKeg === selectedKeg"
   [keg]="currentKeg">
   </keg-display>
@@ -24,6 +31,7 @@ export class KegListComponent {
   public kegList: Keg[];
   public onKegSelect: EventEmitter<Keg>;
   public selectedKeg: Keg;
+  public filterEmpty: string = "all";
   constructor() {
     this.onKegSelect = new EventEmitter();
   }
@@ -34,5 +42,9 @@ export class KegListComponent {
   }
   createKeg(newKeg: Keg) {
     this.kegList.push(newKeg);
+  }
+  onChange(filterOption) {
+    this.filterEmpty = filterOption;
+
   }
 }
