@@ -5,26 +5,34 @@
 
 button {
   border: none;
-  border-radius: 2%;
-  padding: 2% 4%;
   background-color: rgba(0,0,0, .2);
   color: white;
   margin: 2%;
+  padding: 5px 10px;
+  font-weight: lighter;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  width: 150px;
   &:focus {
     outline: none;
   }
   &:hover {
-    color: darkcyan;
+    color: #E2A758;
   }
 }
 
 #pourButton {
-  width: 100px;
-  padding: 5px 10px;
-  border-radius: 3px;
+  margin-top: 35px;
 }
 
 #deleteButton {
-  padding: 8px;
-  border-radius: 5px;
+
+}
+
+#refillButton {
+  margin-left: 20px;
+}
+
+#editButton {
+
 }

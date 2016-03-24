@@ -18,7 +18,7 @@ import { KegVisualComponent} from './keg-visual.component';
         <div *ngIf="keg !== kegToEdit"  class="beerInfo"  [class.strong]="6.4 < keg.abv" [class.light]="6.5 > keg.abv" [class.session]="5 > keg.abv">
           <div class="beerText">
             <h2>{{ keg.name }} - <span [class.expensive]="5 < keg.price" [class.cheap]="6 > keg.price">\$\{{ keg.price.toFixed(2) }}</span></h2>
-            <p>{{ keg.brand }}</p>
+            <h4>{{ keg.brand }}</h4>
             <p>{{ keg.abv.toFixed(1) }}%</p>
             <p>{{ keg.pints }}  pints remaining</p>
           </div>
@@ -29,12 +29,12 @@ import { KegVisualComponent} from './keg-visual.component';
       </div>
 
       <div class="beerButtons">
-        <button (click)="editKeg(keg)" type="button" id="editButton">Edit this Beer</button>
-        <refill-keg *ngIf="keg.pints < 10" [keg]="keg"></refill-keg>
+        <button (click)="editKeg(keg)" type="button" id="editButton">Edit Beer</button>
         <delete-keg
           [keg]="keg"
           (onSubmitKegDelete)="sendKeg($event)">
         </delete-keg>
+        <refill-keg *ngIf="keg.pints < 10" [keg]="keg"></refill-keg>
       </div>
     </div>
 

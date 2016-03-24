@@ -11,19 +11,24 @@ import {ChangePipe} from './change.pipe';
   directives: [KegComponent, NewKegComponent],
   pipes: [ChangePipe],
   template: `
-  <div class="filterForm">
-    <select class="kegsFilter" (change)="onChange($event.target.value)">
-    <option selected="selected" value="all">Show All</option>
-    <option value="change">Show Kegs Ready to Be Changed</option>
-    <option value="stillFull" selected="selected">Show Full Kegs</option>
-  </select>
+  <div class="add-filter">
+    <div class="filterForm">
+      <select class="kegsFilter" (change)="onChange($event.target.value)">
+        <option selected="selected" value="all">Show All</option>
+        <option value="change">Show Kegs Ready to Be Changed</option>
+        <option value="stillFull" selected="selected">Show Full Kegs</option>
+      </select>
+    </div>
+    <div class="addForm">
+      <new-keg (onSubmitNewKeg)="createKeg($event)">
+      </new-keg>
+    </div>
   </div>
   <keg-display  *ngFor="#currentKeg of kegList | change:filterEmpty" (click)="kegClicked(currentKeg)"
   [class.selected]="currentKeg === selectedKeg"
   [keg]="currentKeg" (onKegDelete)="deleteKeg($event)">
   </keg-display>
-  <new-keg (onSubmitNewKeg)="createKeg($event)">
-  </new-keg>
+
   `
 })
 export class KegListComponent {

@@ -9,7 +9,7 @@ import {Keg} from './keg.model';
   <div class="delete">
     <button
       (click)="submitDelete(keg)" type="button" id="deleteButton">
-      <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+      Delete Keg
     </button>
   </div>
   `
