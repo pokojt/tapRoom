@@ -21,7 +21,7 @@ import {ChangePipe} from './change.pipe';
   [class.selected]="currentKeg === selectedKeg"
   [keg]="currentKeg" (onKegDelete)="deleteKeg($event)">
   </keg-display>
-  <edit-keg-details *ngIf="selectedKeg, false" [keg]="selectedKeg">
+  <edit-keg-details *ngIf="!kegToDelete && selectedKeg" [keg]="selectedKeg">
   </edit-keg-details>
   <new-keg (onSubmitNewKeg)="createKeg($event)">
   </new-keg>
@@ -47,9 +47,9 @@ export class KegListComponent {
   }
   onChange(filterOption) {
     this.filterEmpty = filterOption;
-
   }
   deleteKeg(kegToDelete: Keg) {
+    this.selectedKeg = this.kegToDelete;
     this.deleteIndex =  this.kegList.indexOf(kegToDelete);
     this.kegList.splice(this.deleteIndex, 1);
   }
