@@ -1,10 +1,12 @@
 import {Component, EventEmitter} from 'angular2/core';
 import { Keg } from './keg.model';
+import { RefillKegComponent} from './refill-keg.component';
 
 @Component ({
    selector: 'keg-display',
    inputs: ['keg'],
    outputs: ['onKegDelete'],
+   directives: [RefillKegComponent],
   template: `
   <div class="kegItem">
   <div class="beerInfo">
@@ -84,6 +86,7 @@ import { Keg } from './keg.model';
     <button (click)="pintPoured(keg)" type="button" id="pourButton">
       Pour a Pint
     </button>
+    <refill-keg *ngIf="keg.pints < 10" [keg]="keg"></refill-keg>
     </div>
     <div class="delete">
     <button (click)="sendKeg(keg)" type="button" id="deleteButton"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
