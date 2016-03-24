@@ -1,0 +1,70 @@
+.filterForm {
+  display: flex;
+  justify-content: center;
+  select {
+    height: 30px;
+    background: rgba(255,255,255, .3);
+    color: white;
+    border-radius: 2px;
+    border: none;
+    margin-bottom: 4%;
+    &:focus {
+      outline: none;
+    }
+  }
+}
+.kegItem {
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  margin: 1%;
+  padding: 2%;
+  background: rgba(255,255,255, .3);
+  &:hover {
+    cursor: pointer;
+  }
+  .beerInfo {
+    border: 1px solid white;
+  }
+}
+
+.selected .kegItem{
+  transition: all 500ms ease-in;
+  background-color: rgba(0,0,0, .2);
+  color: white;
+  letter-spacing: 5px;
+}
+
+.pintbar {
+  border: 1px solid green;
+  .kegFullness {
+    width: 30px;
+    height:124px;
+    background-color: darkcyan;
+    border-radius: 5px;
+  }
+}
+.poured {
+  height: 2px;
+  background-color: white;
+}
+
+p.expensive {
+  color: green;
+}
+
+p.cheap {
+  color: blue;
+}
+
+h3.strong::after {
+  content: url("../../resources/img/strong.png");
+}
+
+h3.light::after {
+  content: url("../../resources/img/light.png");
+}
+
+h3.session::after {
+  content: url("../../resources/img/session.png");
+}

@@ -1,0 +1,30 @@
+// -----------------------------------------------------------------------------
+// This file contains all styles related to the button component.
+// -----------------------------------------------------------------------------
+
+
+button {
+  border: none;
+  border-radius: 2%;
+  padding: 2% 4%;
+  background-color: rgba(0,0,0, .2);
+  color: white;
+  margin: 2%;
+  &:focus {
+    outline: none;
+  }
+  &:hover {
+    color: darkcyan;
+  }
+}
+
+#pourButton {
+  width: 100px;
+  padding: 5px 10px;
+  border-radius: 3px;
+}
+
+#deleteButton {
+  padding: 8px;
+  border-radius: 5px;
+}

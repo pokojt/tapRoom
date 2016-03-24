@@ -1,52 +1,11 @@
-h1 {
-  color: blue;
-}
+//==============================================
+// GLOBAL IMPORTS
+//==============================================
 
-.kegItem {
-  display: flex;
-  justify-content: space-around;
-  border: 1px solid darkcyan;
-  margin: 1%;
-  padding: 2%;
-  background: transparent;
-  &:hover {
-    cursor: pointer;
-  }
-}
+@import 'bourbon/bourbon';
+@import 'neat/neat';
 
-.selected .kegItem{
-  transition: all 500ms ease-in;
-  background-color: rgba(0,0,0, .2);
-  letter-spacing: 5px;
-}
-
-.kegFullness {
-  border: 1px solid blue;
-  width: 30px;
-  height:124px;
-  background-color: blue;
-}
-.poured {
-  height: 2px;
-  background-color: white;
-}
-
-p.expensive {
-  color: green;
-}
-
-p.cheap {
-  color: blue;
-}
-
-h3.strong::after {
-  content: url("../../resources/img/strong.png");
-}
-
-h3.light::after {
-  content: url("../../resources/img/light.png");
-}
-
-h3.session::after {
-  content: url("../../resources/img/session.png");
-}
+@import 'utils/index';
+@import 'base/index';
+@import 'layout/index';
+@import 'components/index';
