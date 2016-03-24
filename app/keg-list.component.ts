@@ -11,11 +11,13 @@ import {ChangePipe} from './change.pipe';
   directives: [KegComponent, NewKegComponent],
   pipes: [ChangePipe],
   template: `
-  <select (change)="onChange($event.target.value)">
+  <div class="filterForm">
+    <select class="kegsFilter" (change)="onChange($event.target.value)">
     <option selected="selected" value="all">Show All</option>
     <option value="change">Show Kegs Ready to Be Changed</option>
     <option value="stillFull" selected="selected">Show Full Kegs</option>
   </select>
+  </div>
   <keg-display  *ngFor="#currentKeg of kegList | change:filterEmpty" (click)="kegClicked(currentKeg)"
   [class.selected]="currentKeg === selectedKeg"
   [keg]="currentKeg" (onKegDelete)="deleteKeg($event)">
