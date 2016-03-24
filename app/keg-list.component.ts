@@ -7,7 +7,7 @@ import {ChangePipe} from './change.pipe';
 
 @Component({
   selector: 'keg-list',
-  inputs: ['kegList'],
+  inputs: ['kegList', 'kegToDelete'],
   outputs: ['onKegSelect'],
   directives: [KegComponent, EditKegDetailsComponent, NewKegComponent],
   pipes: [ChangePipe],
@@ -19,16 +19,18 @@ import {ChangePipe} from './change.pipe';
   </select>
   <keg-display  *ngFor="#currentKeg of kegList | change:filterEmpty" (click)="kegClicked(currentKeg)"
   [class.selected]="currentKeg === selectedKeg"
-  [keg]="currentKeg">
+  [keg]="currentKeg" (onKegDelete)="deleteKeg($event)">
   </keg-display>
-  <edit-keg-details *ngIf="selectedKeg" [keg]="selectedKeg">
+  <edit-keg-details *ngIf="selectedKeg, false" [keg]="selectedKeg">
   </edit-keg-details>
   <new-keg (onSubmitNewKeg)="createKeg($event)">
   </new-keg>
   `
 })
 export class KegListComponent {
+  public kegToDelete: Keg;
   public kegList: Keg[];
+  public deleteIndex: number;
   public onKegSelect: EventEmitter<Keg>;
   public selectedKeg: Keg;
   public filterEmpty: string = "all";
@@ -46,5 +48,9 @@ export class KegListComponent {
   onChange(filterOption) {
     this.filterEmpty = filterOption;
 
+  }
+  deleteKeg(kegToDelete: Keg) {
+    this.deleteIndex =  this.kegList.indexOf(kegToDelete);
+    this.kegList.splice(this.deleteIndex, 1);
   }
 }

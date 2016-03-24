@@ -4,6 +4,7 @@ import { Keg } from './keg.model';
 @Component ({
    selector: 'keg-display',
    inputs: ['keg'],
+   outputs: ['onKegDelete'],
   template: `
   <div class="kegItem">
   <div class="beerInfo">
@@ -84,12 +85,18 @@ import { Keg } from './keg.model';
       Pour a Pint
     </button>
     </div>
+    <div class="delete">
+    <button (click)="sendKeg(keg)" type="button" id="deleteButton"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
+    </div>
   </div>
   `
 })
 export class KegComponent {
   public keg: Keg;
-  public onPintPour: EventEmitter<Keg>;
+  public onKegDelete: EventEmitter<Keg>;
+  constructor() {
+    this.onKegDelete = new EventEmitter();
+  }
   pintPoured(keg: Keg): void {
     if (keg.pints > 0) {
       keg.pints -= 1;
@@ -97,5 +104,8 @@ export class KegComponent {
       alert("go home! you're drunk!");
     }
     console.log(keg.pints);
+  }
+  sendKeg(kegToDelete: Keg): void {
+    this.onKegDelete.emit(kegToDelete);
   }
 }
