@@ -17,14 +17,53 @@
   color: white;
   display: flex;
   justify-content: space-between;
+  border: 3px solid white;
   margin: 1%;
   padding: 2%;
   background: rgba(255,255,255, .3);
   &:hover {
     cursor: pointer;
   }
-  .beerInfo {
-    border: 1px solid white;
+  .beerLeft {
+    width: 80%;
+    .beerContent {
+      border: 1px solid cyan;
+      display: flex;
+      justify-content: space-between;
+      .beerInfo {
+        display: flex;
+        border: 1px solid purple;
+        width: 80%;
+        .beerText {
+          border: 1px solid red;
+        }
+      }
+      .beerPrice {
+        border: 3px solid red;
+        @include textFormat(30px);
+        margin-top: 20px;
+      }
+    }
+    .beerButtons {
+      border: 1px solid blue;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+    }
+  }
+  .pintsBar {
+    width: 30%;
+    border: 1px solid green;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    .kegFullness {
+      width: 30px;
+      height:124px;
+      background-color: darkcyan;
+      border-radius: 5px;
+    }
   }
 }
 
@@ -35,36 +74,38 @@
   letter-spacing: 5px;
 }
 
-.pintbar {
-  border: 1px solid green;
-  .kegFullness {
-    width: 30px;
-    height:124px;
-    background-color: darkcyan;
-    border-radius: 5px;
-  }
-}
 .poured {
   height: 2px;
   background-color: white;
 }
 
-p.expensive {
-  color: green;
+span.expensive {
+  color: #E2A758;
+  font-size: 35px;
 }
 
-p.cheap {
-  color: blue;
+span.cheap {
+  color: black;
+    font-size: 35px;
 }
 
-h3.strong::after {
+h2 {
+  @include textFormat(50px, lighter);
+}
+.beerInfo.strong::before {
   content: url("../../resources/img/strong.png");
+  padding-top: 40px;
+
 }
 
-h3.light::after {
+.beerInfo.light::before {
   content: url("../../resources/img/light.png");
+  padding-top: 40px;
+
 }
 
-h3.session::after {
+.beerInfo.session::before {
   content: url("../../resources/img/session.png");
+  padding-top: 40px;
+
 }

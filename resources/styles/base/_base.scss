@@ -19,7 +19,7 @@ body::-webkit-scrollbar {
 }
 
 body {
-  background-color: lighten(#262626, 10%);
+  background-color: $backgroundcolor;
 }
 
 /**
@@ -30,5 +30,5 @@ a {
 }
 
 h1 {
-  color: white;
+  @include textFormat(100px, lighter, 3px, white);
 }

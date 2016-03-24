@@ -6,10 +6,10 @@ import { Keg } from './keg.model';
   selector: 'my-app',
   directives: [KegListComponent],
   template: `
+    <div class="header">
+      <h1>Tap That App</h1>
+    </div>
     <div class="container">
-      <div class="header">
-        <h1>Tap That App</h1>
-      </div>
       <keg-list
         [kegList]="kegs"
         (onKegSelect)="kegWasSelected($event)">

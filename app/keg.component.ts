@@ -12,38 +12,40 @@ import { KegVisualComponent} from './keg-visual.component';
    directives: [RefillKegComponent, EditKegComponent, DeleteKegComponent, KegVisualComponent],
   template: `
   <div class="kegItem">
-  <div *ngIf="keg !== kegToEdit" class="beerInfo">
-    <h3 [class.strong]="6.4 < keg.abv" [class.light]="6.5 > keg.abv" [class.session]="5 > keg.abv">{{ keg.name }}</h3>
-    <p>{{ keg.brand }}</p>
-    <p [class.expensive]="5 < keg.price" [class.cheap]="6 > keg.price">\$\{{ keg.price.toFixed(2) }}</p>
-    <p>{{ keg.abv.toFixed(1) }}%</p>
-    <p>{{ keg.pints }}  pints remaining</p>
-    <button (click)="editKeg(keg)" type="button" id="editButton">Edit this Beer</button>
-  </div>
+    <div class="beerLeft">
+      <div class="beerContent">
 
-  <edit-keg
-    [keg]="keg" *ngIf="kegToEdit" (onSubmitKegEdit)="submitEdit($event)">
-  </edit-keg>
+        <div *ngIf="keg !== kegToEdit"  class="beerInfo"  [class.strong]="6.4 < keg.abv" [class.light]="6.5 > keg.abv" [class.session]="5 > keg.abv">
+          <div class="beerText">
+            <h2>{{ keg.name }} - <span [class.expensive]="5 < keg.price" [class.cheap]="6 > keg.price">\$\{{ keg.price.toFixed(2) }}</span></h2>
+            <p>{{ keg.brand }}</p>
+            <p>{{ keg.abv.toFixed(1) }}%</p>
+            <p>{{ keg.pints }}  pints remaining</p>
+          </div>
+        </div>
+        <edit-keg
+          [keg]="keg" *ngIf="kegToEdit" (onSubmitKegEdit)="submitEdit($event)">
+        </edit-keg>
+      </div>
 
-  <div class="pintBar">
-    <keg-visual
-      [keg]="keg">
-    </keg-visual>
-
-
-    <button (click)="pintPoured(keg)" type="button" id="pourButton">
-      Pour a Pint
-    </button>
-    
-    <refill-keg *ngIf="keg.pints < 10" [keg]="keg"></refill-keg>
+      <div class="beerButtons">
+        <button (click)="editKeg(keg)" type="button" id="editButton">Edit this Beer</button>
+        <refill-keg *ngIf="keg.pints < 10" [keg]="keg"></refill-keg>
+        <delete-keg
+          [keg]="keg"
+          (onSubmitKegDelete)="sendKeg($event)">
+        </delete-keg>
+      </div>
     </div>
 
-    <delete-keg
-      [keg]="keg"
-      (onSubmitKegDelete)="sendKeg($event)">
-    </delete-keg>
-
-
+    <div class="pintsBar">
+      <keg-visual
+        [keg]="keg">
+      </keg-visual>
+      <button (click)="pintPoured(keg)" type="button" id="pourButton">
+      Pour a Pint
+      </button>
+    </div>
   </div>
   `
 })

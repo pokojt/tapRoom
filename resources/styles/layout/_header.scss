@@ -3,9 +3,12 @@
 // -----------------------------------------------------------------------------
 
 .header {
-  // height: 100vh;
+  width: 100vw;
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 3% auto 1% auto;
+  margin-bottom: 1%;
+  height: 450px;
+  background: url("../../resources/img/taps.jpg");
+  background-size: cover;
 }

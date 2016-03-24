@@ -2,19 +2,10 @@
 // This file contains all application-wide Sass mixins.
 // -----------------------------------------------------------------------------
 
-@mixin on-event($self: false) {
-  @if $self {
-    &,
-    &:hover,
-    &:active,
-    &:focus {
-      @content;
-    }
-  } @else {
-    &:hover,
-    &:active,
-    &:focus {
-      @content;
-    }
-  }
+
+@mixin textFormat ($size:null, $weight: null, $l-spacing: null, $color:null) {
+  font-size: $size;
+  font-weight: $weight;
+  letter-spacing: $l-spacing;
+  color: $color;
 }
