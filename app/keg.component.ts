@@ -1,12 +1,13 @@
 import {Component, EventEmitter} from 'angular2/core';
 import { Keg } from './keg.model';
 import { RefillKegComponent} from './refill-keg.component';
+import { EditKegComponent} from './edit-keg.component';
 
 @Component ({
    selector: 'keg-display',
    inputs: ['keg'],
    outputs: ['onKegDelete'],
-   directives: [RefillKegComponent],
+   directives: [RefillKegComponent, EditKegComponent],
   template: `
   <div class="kegItem">
   <div *ngIf="keg !== kegToEdit" class="beerInfo">
@@ -17,18 +18,11 @@ import { RefillKegComponent} from './refill-keg.component';
     <p>{{ keg.pints }}  pints remaining</p>
     <button (click)="editKeg(keg)" type="button" id="editButton">Edit this Beer</button>
   </div>
-  <div *ngIf="kegToEdit" class="editBeer">
-    <h3>Edit Keg:</h3>
-    <label for="name">Beer</label>
-    <input [(ngModel)]="keg.name" />
-    <label for="brand">Brand</label>
-    <input [(ngModel)]="keg.brand" />
-    <label for="price">Price/Pint</label>
-    <input type="number" [(ngModel)]="keg.price" />
-    <label for="abv">ABV</label>
-    <input type="number" [(ngModel)]="keg.abv" />
-    <button (click)="submitEdit()" type="button" id="editButton">Submit Edit</button>
-  </div>
+
+  <edit-keg
+    [keg]="keg" *ngIf="kegToEdit" (onSubmitKegEdit)="submitEdit($event)">
+  </edit-keg>
+
   <div class="pintBar">
 
     <div ng-repeat="n in fullnessArray" class="kegFullness">
@@ -127,7 +121,6 @@ export class KegComponent {
   }
   editKeg(keg: Keg) {
     this.kegToEdit = keg;
-    console.log(this.kegToEdit);
   }
   submitEdit() {
     this.kegToEdit = this.notKeg;
