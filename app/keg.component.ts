@@ -9,13 +9,25 @@ import { RefillKegComponent} from './refill-keg.component';
    directives: [RefillKegComponent],
   template: `
   <div class="kegItem">
-  <div class="beerInfo">
+  <div *ngIf="keg !== kegToEdit" class="beerInfo">
     <h3 [class.strong]="6.4 < keg.abv" [class.light]="6.5 > keg.abv" [class.session]="5 > keg.abv">{{ keg.name }}</h3>
     <p>{{ keg.brand }}</p>
     <p [class.expensive]="5 < keg.price" [class.cheap]="6 > keg.price">\$\{{ keg.price.toFixed(2) }}</p>
     <p>{{ keg.abv.toFixed(1) }}%</p>
     <p>{{ keg.pints }}  pints remaining</p>
-
+    <button (click)="editKeg(keg)" type="button" id="editButton">Edit this Beer</button>
+  </div>
+  <div *ngIf="kegToEdit" class="editBeer">
+    <h3>Edit Keg:</h3>
+    <label for="name">Beer</label>
+    <input [(ngModel)]="keg.name" />
+    <label for="brand">Brand</label>
+    <input [(ngModel)]="keg.brand" />
+    <label for="price">Price/Pint</label>
+    <input type="number" [(ngModel)]="keg.price" />
+    <label for="abv">ABV</label>
+    <input type="number" [(ngModel)]="keg.abv" />
+    <button (click)="submitEdit()" type="button" id="editButton">Submit Edit</button>
   </div>
   <div class="pintBar">
 
@@ -95,6 +107,8 @@ import { RefillKegComponent} from './refill-keg.component';
   `
 })
 export class KegComponent {
+  public kegToEdit: Keg;
+  public notKeg: Keg;
   public keg: Keg;
   public onKegDelete: EventEmitter<Keg>;
   constructor() {
@@ -110,5 +124,12 @@ export class KegComponent {
   }
   sendKeg(kegToDelete: Keg): void {
     this.onKegDelete.emit(kegToDelete);
+  }
+  editKeg(keg: Keg) {
+    this.kegToEdit = keg;
+    console.log(this.kegToEdit);
+  }
+  submitEdit() {
+    this.kegToEdit = this.notKeg;
   }
 }
