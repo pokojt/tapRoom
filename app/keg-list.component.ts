@@ -1,7 +1,6 @@
 import {Component, EventEmitter} from 'angular2/core';
 import {Keg} from './keg.model';
 import { KegComponent } from './keg.component';
-import { EditKegDetailsComponent } from './edit-keg-details.component';
 import { NewKegComponent} from './add-keg.component';
 import {ChangePipe} from './change.pipe';
 
@@ -9,7 +8,7 @@ import {ChangePipe} from './change.pipe';
   selector: 'keg-list',
   inputs: ['kegList', 'kegToDelete'],
   outputs: ['onKegSelect'],
-  directives: [KegComponent, EditKegDetailsComponent, NewKegComponent],
+  directives: [KegComponent, NewKegComponent],
   pipes: [ChangePipe],
   template: `
   <select (change)="onChange($event.target.value)">
@@ -21,8 +20,6 @@ import {ChangePipe} from './change.pipe';
   [class.selected]="currentKeg === selectedKeg"
   [keg]="currentKeg" (onKegDelete)="deleteKeg($event)">
   </keg-display>
-  <edit-keg-details *ngIf="!kegToDelete && selectedKeg" [keg]="selectedKeg">
-  </edit-keg-details>
   <new-keg (onSubmitNewKeg)="createKeg($event)">
   </new-keg>
   `
